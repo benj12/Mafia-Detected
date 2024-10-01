@@ -7,6 +7,13 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+
+
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Function to get the number of players
 function numPlayers(callback) {
     rl.question('Enter the number of players: ', (input) => {
@@ -45,6 +52,8 @@ function askForNames(numberOfPlayers) {
             });
         } else {
             console.log("Player Names:", playerNames);
+            const randNum = getRandomNumber(1, numberOfPlayers);
+            console.log(randNum);
             rl.close(); // Exit the interface
         }
     }
@@ -54,3 +63,6 @@ function askForNames(numberOfPlayers) {
 
 // Start the process
 numPlayers(askForNames); // Get the number of players and proceed to ask for names
+
+
+
