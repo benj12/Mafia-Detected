@@ -6,9 +6,6 @@ const rl = readline.createInterface({
 });
 
 let numberOfPlayers; // Declare a variable to store the number of players
-let mafiaCount = 0;
-let detectiveCount = 0;
-let doctorCount = 0;
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -35,33 +32,19 @@ function isValidName(name) {
     return namePattern.test(name);
 }
 
+// Function to shuffle an array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = getRandomNumber(0, i);
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 // Function to ask for player names
 function askForNames() {
     const playerData = {}; // Change to an object to store names and additional data
     let count = 0;
-
-    function assignRole() {
-        let role;
-
-        // Adjust role assignment based on total players
-        const mafiaLimit = Math.min(2, Math.floor(numberOfPlayers / 3)); // Max 2 or 1/3 of players
-        const rand = getRandomNumber(1, 4); // Generate a random number between 1 and 4
-
-        // Determine role based on random number and counts
-        if (mafiaCount < mafiaLimit && rand === 1) {
-            role = "mafia";
-            mafiaCount++;
-        } else if (doctorCount === 0) { // Ensure at least 1 doctor
-            role = "doctor";
-            doctorCount++;
-        } else if (detectiveCount === 0) { // Ensure at least 1 detective
-            role = "detective";
-            detectiveCount++;
-        } else {
-            role = "townspeople"; // Default role
-        }
-        return role;
-    }
 
     function askForName() {
         if (count < numberOfPlayers) {
@@ -69,9 +52,7 @@ function askForNames() {
                 if (isValidName(name)) {
                     // Check for duplicate names
                     if (!playerData[name]) {
-                        const assignedRole = assignRole(); // Assign a role
-                        // Add additional value (e.g., score, health) to the player's data
-                        playerData[name] = { role: assignedRole, state: 'living' }; // Example additional value
+                        playerData[name] = { role: null, state: 'living'}; // Placeholder for role
                         count++;
                         askForName(); // Ask for the next name
                     } else {
@@ -84,14 +65,22 @@ function askForNames() {
                 }
             });
         } else {
-            // After assigning roles, ensure there is at least 1 doctor and 1 detective
-            if (doctorCount === 0) {
-                const randomDoctorName = Object.keys(playerData)[getRandomNumber(0, count - 1)];
-                playerData[randomDoctorName].role = "doctor"; // Assign doctor role
-            }
-            if (detectiveCount === 0) {
-                const randomDetectiveName = Object.keys(playerData)[getRandomNumber(0, count - 1)];
-                playerData[randomDetectiveName].role = "detective"; // Assign detective role
+            // Prepare roles
+            const roles = [];
+            const mafiaLimit = Math.min(2, Math.floor(numberOfPlayers / 3)); // Max 2 or 1/3 of players
+            for (let i = 0; i < mafiaLimit; i++) roles.push("mafia");
+            roles.push("doctor"); // Ensure 1 doctor
+            roles.push("detective"); // Ensure 1 detective
+            const townspeopleCount = numberOfPlayers - roles.length;
+            for (let i = 0; i < townspeopleCount; i++) roles.push("townspeople");
+
+            // Shuffle roles for random assignment
+            shuffleArray(roles);
+
+            // Assign roles randomly
+            const playerNames = Object.keys(playerData);
+            for (let i = 0; i < playerNames.length; i++) {
+                playerData[playerNames[i]].role = roles[i];
             }
 
             console.log("Player Data:", playerData); // Display the full dictionary with roles and additional values
