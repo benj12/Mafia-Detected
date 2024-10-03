@@ -6,7 +6,7 @@ const rl = readline.createInterface({
 });
 
 let numberOfPlayers; // Declare a variable to store the number of players
-let victim; // Variable to store the mafia's victim
+let victims = []; // Variable to store the mafia's victim
 let doctorChoice; // Variable to store the doctor's choice
 
 function getRandomNumber(min, max) {
@@ -81,13 +81,23 @@ function game() {
                 playerData[playerNames[i]].role = roles[i];
             }
 
-            // Night phase
-            nightPhase(playerData);
+            // Start the game
+            startNightPhase(playerData);
         }
     }
 
     askForName();
 }
+
+function startNightPhase(playerData) {
+    nightPhase(playerData);
+}
+
+
+
+
+
+
 
 function nightPhase(playerData) {
     const mafiaPlayers = [];
@@ -95,9 +105,9 @@ function nightPhase(playerData) {
 
     // Separate players into mafia and normal roles
     for (const player in playerData) {
-        if (playerData[player].role === "mafia") {
+        if (playerData[player].role === "mafia" && playerData[player].state === "living") {
             mafiaPlayers.push(player);
-        } else {
+        } else if ((playerData[player].role === "detective" || playerData[player].role === "doctor" || playerData[player].role === "townspeople") && playerData[player].state === "living"){
             normalPeople.push(player);
         }
     }
@@ -107,63 +117,79 @@ function nightPhase(playerData) {
     console.log("Who do you want to kill?\n");
     console.log("Player names (not mafia): ", normalPeople);
 
-    if (mafiaPlayers.length === 1) {
-        const mafiaPlayer = mafiaPlayers[0];
+    const promptForVictims = (index) => {
+        if (index < mafiaPlayers.length) {
+            const mafiaPlayer = mafiaPlayers[index];
 
-        const promptForVictim = () => {
             rl.question(`Mafia (${mafiaPlayer}), who do you want to kill? (enter name): `, (inputVictim) => {
                 if (normalPeople.includes(inputVictim)) {
-                    victim = inputVictim; // Store the victim
-                    console.log(`Mafia has chosen to kill: ${victim}`);
-                    promptForWhoToSave(playerData, mafiaPlayer);
+                    victims.push(inputVictim); // Store the victim
+                    console.log(`Mafia ${mafiaPlayer} has chosen to kill: ${inputVictim}`);
+                    promptForVictims(index + 1); // Proceed to the next mafia player
                 } else if (mafiaPlayers.includes(inputVictim)) {
                     console.log("You can't kill your teammate or yourself. Please choose a different victim.\n");
-                    promptForVictim();
+                    promptForVictims(index); // Re-prompt the same mafia player
                 } else {
                     console.log("Invalid name. Please choose from the list of normal players.\n");
-                    promptForVictim();
+                    promptForVictims(index); // Re-prompt the same mafia player
                 }
             });
-        };
+        } else {
+            // All mafia players have made their choices, proceed to save logic
+            promptForWhoToSave(victims, playerData);
+        }
+    };
 
-        promptForVictim();
+    promptForVictims(0); // Start prompting from the first mafia player
+} 
+
+
+// Function for the doctor to choose whom to save
+function promptForWhoToSave(victims, playerData) {
+    const doctorName = Object.keys(playerData).find(player => playerData[player].role === "doctor");
+
+    if (playerData[doctorName].state === "dead") {
+        promptForDetective(playerData);
     } else {
-        console.log("Multiple mafia players detected. Logic for handling multiple mafia roles is not implemented yet.");
-        rl.close();
+        const savePrompt = (index) => {
+            if (index < victims.length) {
+                rl.question(`Doctor ${doctorName}, who do you want to save?\n`, (input) => {
+                    if (input === doctorName) {
+                        console.log(`${doctorName} chose to save himself.`);
+                        playerData[doctorName].state = "living"; // Doctor saves themselves
+                        // Mark other victims as dead
+                        victims.forEach(victim => {
+                            if (victim !== doctorName) {
+                                playerData[victim].state = "dead"; // Mark victim as dead
+                                console.log(`${victim} has been killed by the mafia.`);
+                            }
+                        });
+                        promptForDetective(playerData); // Proceed to detective phase
+                    } else if (victims.includes(input)) {
+                        console.log(`Doctor ${doctorName} chose to save ${input}.`);
+                        playerData[input].state = "living"; // Mark saved victim as living
+                        // Mark the other victims as dead
+                        victims.forEach(victim => {
+                            if (victim !== input) {
+                                playerData[victim].state = "dead"; // Mark other victims as dead
+                                console.log(`${victim} has been killed by the mafia.`);
+                            }
+                        });
+                        promptForDetective(playerData); // Proceed to detective phase
+                    } else {
+                        console.log("Invalid choice. Please select a valid player to save.");
+                        savePrompt(index); // Re-prompt if invalid
+                    }
+                });
+            } else {
+                // If there are no more victims to choose from, proceed to the detective phase
+                promptForDetective(playerData);
+            }
+        };
+        savePrompt(0); // Start prompting from the first victim
     }
 }
 
-// Function for the doctor to choose whom to save
-function promptForWhoToSave(playerData, mafiaPlayer) {
-    const doctorName = Object.keys(playerData).find(player => playerData[player].role === "doctor");
-    rl.question(`Doctor ${doctorName}, who do you want to save?\n`, (input) => {
-        if (input === doctorName) {
-            doctorChoice = doctorName; // Store doctor's choice
-        } else if (playerData[input]) {
-            doctorChoice = input; // Store doctor's choice
-        } else {
-            console.log("Invalid choice. Please select a valid player to save.");
-            return promptForWhoToSave(playerData, mafiaPlayer); // Re-prompt if invalid
-        }
-
-        // Combined output message
-        let outputMessage = "";
-
-        if (doctorChoice === victim) {
-            outputMessage += "The doctor saved himself from getting killed. ";
-            playerData[doctorChoice].state = "living";
-        } else if (doctorChoice === doctorName) {
-            outputMessage += `${doctorName} saved himself, and ${victim} died.`;
-            playerData[victim].state = "dead";
-        } else {
-            outputMessage += `${doctorName} saved ${doctorChoice}, while the mafia killed ${victim}.`;
-            playerData[victim].state = "dead";
-        }
-
-        console.log(outputMessage);
-        promptForDetective(playerData); // Now prompt for the detective
-    });
-}
 
 // Function for the detective to inquire about a player
 function promptForDetective(playerData) {
@@ -176,7 +202,7 @@ function promptForDetective(playerData) {
             if (playerData[input]) {
                 if (playerData[input].state === 'dead') {
                     console.log(`Detective, ${input} is already dead. You cannot vote based on a dead player.`);
-                    dayPhase(playerData, null); // Proceed without detective's input
+                    dayPhase(playerData); // Proceed without detective's input
                 } else {
                     // Valid living suspect
                     if (playerData[input].role === "doctor" || playerData[input].role === "townspeople" || playerData[input].role === "detective") {
@@ -204,15 +230,18 @@ function dayPhase(playerData) {
         console.log("The detective is dead. The townspeople will vote without the detective's input.");
         gatherVotes(playerData, null); // No suspicions from the detective
     } else {
-        rl.question(`Detective ${detective}, who do you have suspicions about? `, (suspectedPlayer) => {
-            if (playerData[suspectedPlayer] && playerData[suspectedPlayer].state === 'living') {
-                console.log(`Detective suspects ${suspectedPlayer}.`);
-                gatherVotes(playerData, suspectedPlayer);
-            } else {
-                console.log("Invalid choice or the player is dead. The detective will not give input.");
-                gatherVotes(playerData, null);
-            }
-        });
+        const suspicionsPrompt = () => {
+            rl.question(`Detective ${detective}, who do you have suspicions about? `, (suspectedPlayer) => {
+                if (playerData[suspectedPlayer] && playerData[suspectedPlayer].state === 'living') {
+                    console.log(`Detective suspects ${suspectedPlayer}.`);
+                    gatherVotes(playerData, suspectedPlayer);
+                } else {
+                    console.log("Invalid choice or the player is dead. Try again.\n\n");
+                    suspicionsPrompt();
+                }
+            });
+        };
+        suspicionsPrompt();
     }
 
     function gatherVotes(playerData, detectiveSuspect) {
@@ -232,12 +261,14 @@ function dayPhase(playerData) {
                 rl.question(`${voter}, who do you vote to kill? `, (vote) => {
                     if (playerData[vote] && playerData[vote].state === 'living') {
                         votes[vote] = (votes[vote] || 0) + 1; // Increment vote count for the selected player
-                        console.log(`${voter} voted for ${vote}.`);
                         askForVote(index + 1); // Move to the next voter
                     } else if (playerData[vote] && playerData[vote].state === 'dead') {
-                        console.log(`You cannot vote for ${vote} because they are already dead. Please choose a living player.`);
+                        console.log(`You cannot vote for ${vote} because he is already dead. Please choose a living player.`);
                         askForVote(index); // Reprompt the same voter
-                    } else {
+                    } else if (vote === "skip" || vote === "Skip" || vote === "nobody" || vote === "Nobody"){
+                        askForVote(index+1);
+                    }
+                    else {
                         console.log("Invalid choice. Please select a living player.");
                         askForVote(index); // Reprompt the same voter
                     }
@@ -275,7 +306,7 @@ function dayPhase(playerData) {
         ).length;
 
         // A majority is more than half
-        const majorityNeeded = Math.floor(totalInnocents / 2) + 1;
+        const majorityNeeded = Math.floor(totalPeople / 2) + 1;
 
         // Only log the result once
         if (highestVotes >= majorityNeeded) {
@@ -288,20 +319,54 @@ function dayPhase(playerData) {
                 victims.forEach(victim => {
                     playerData[victim].state = "dead"; // Mark the victim as dead
                 });
-                if()
+                // Check if mafia is the same amount or outnumbers the innocent
+                if (areAllMafiaDead(playerData)) {
+                    gameOverForMafia();
+                } else if (areAllTownspeopleAndMafiaEqual(playerData)) {
+                    gameOverForTownspeople();
+                } else {
+                    startNightPhase(playerData); // Proceed to the next night phase
+                }
             }
         } else {
             console.log("No one received enough votes to be killed. Everyone stays alive.");
+            startNightPhase(playerData); // Proceed to the next night phase
         }
-
-        // Proceed to the next phase or conclude the game
-        rl.close();
     }
 }
 
-function gameOver(playerData) {
+function areAllTownspeopleAndMafiaEqual(playerData) {
+    let mafiaCount = 0;
+    let townspeopleCount = 0;
+    for (const player in playerData) {
+        if ((playerData[player].role === "detective" || playerData[player].role === "doctor" || playerData[player].role === "townspeople") && playerData[player].state === "living") {
+            townspeopleCount++;
+        } else if (playerData[player].role === "mafia" && playerData[player].state === "living") {
+            mafiaCount++;
+        }
+    }
+    return townspeopleCount === mafiaCount;
+}
+
+function areAllMafiaDead(playerData) {
+    // Get all players with the role of "mafia"
+    const mafiaPlayers = Object.keys(playerData).filter(player => playerData[player].role === "mafia");
+
+    // Check if all mafia players are dead
+    return mafiaPlayers.every(player => playerData[player].state === "dead");
+}
+
+function gameOverForMafia() {
     // Logic to determine the game over state can be added here
+    console.log("The townspeople have won and all of the mafia members are dead...\n\nGame Over...\n");
+    rl.close();
+}
+
+function gameOverForTownspeople() {
+    console.log("The mafia has won...\n\nGame Over...\n");
+    rl.close();
 }
 
 // Start the process
 numPlayers(game);
+
