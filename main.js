@@ -266,10 +266,11 @@ function dayPhase(playerData) {
         }
 
         // Check for majority
-        const totalInnocents = Object.keys(playerData).filter(player =>
+        const totalPeople = Object.keys(playerData).filter(player =>
             (playerData[player].role === "townspeople" ||
                 playerData[player].role === "doctor" ||
-                playerData[player].role === "detective") &&
+                playerData[player].role === "detective" ||
+                playerData[player].role === "mafia") &&
             playerData[player].state === "living"
         ).length;
 
@@ -287,6 +288,7 @@ function dayPhase(playerData) {
                 victims.forEach(victim => {
                     playerData[victim].state = "dead"; // Mark the victim as dead
                 });
+                if()
             }
         } else {
             console.log("No one received enough votes to be killed. Everyone stays alive.");
