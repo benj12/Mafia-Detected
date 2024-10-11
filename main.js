@@ -88,17 +88,9 @@ function game() {
 
     askForName();
 }
-
 function startNightPhase(playerData) {
     nightPhase(playerData);
 }
-
-
-
-
-
-
-
 function nightPhase(playerData) {
     const mafiaPlayers = [];
     const normalPeople = [];
@@ -123,9 +115,15 @@ function nightPhase(playerData) {
 
             rl.question(`Mafia (${mafiaPlayer}), who do you want to kill? (enter name): `, (inputVictim) => {
                 if (normalPeople.includes(inputVictim)) {
-                    victims.push(inputVictim); // Store the victim
-                    console.log(`Mafia ${mafiaPlayer} has chosen to kill: ${inputVictim}`);
-                    promptForVictims(index + 1); // Proceed to the next mafia player
+                    if(victims.includes(inputVictim)){
+                        console.log("This victim has already been chosen by a previous member of the mafia, choose someone else.");
+                        promptForVictims(index);
+                    }
+                    else{
+                        victims.push(inputVictim); // Store the victim
+                        console.log(`Mafia ${mafiaPlayer} has chosen to kill: ${inputVictim}`);
+                        promptForVictims(index + 1); // Proceed to the next mafia player
+                    }
                 } else if (mafiaPlayers.includes(inputVictim)) {
                     console.log("You can't kill your teammate or yourself. Please choose a different victim.\n");
                     promptForVictims(index); // Re-prompt the same mafia player
@@ -153,31 +151,28 @@ function promptForWhoToSave(victims, playerData) {
     } else {
         const savePrompt = (index) => {
             if (index < victims.length) {
-                rl.question(`Doctor ${doctorName}, who do you want to save?\n`, (input) => {
-                    if (input === doctorName) {
-                        console.log(`${doctorName} chose to save himself.`);
-                        playerData[doctorName].state = "living"; // Doctor saves themselves
-                        // Mark other victims as dead
-                        victims.forEach(victim => {
-                            if (victim !== doctorName) {
-                                playerData[victim].state = "dead"; // Mark victim as dead
-                                console.log(`${victim} has been killed by the mafia.`);
-                            }
-                        });
-                        promptForDetective(playerData); // Proceed to detective phase
-                    } else if (victims.includes(input)) {
-                        console.log(`Doctor ${doctorName} chose to save ${input}.`);
+                rl.question(`Doctor ${doctorName}, who do you want to save? (You can save any living player)\n`, (input) => {
+                    // Check if the input is a valid living player
+                    if (playerData[input] && playerData[input].state === "living") {
+                        if (input === doctorName) {
+                            console.log(`${doctorName} chose to save himself.`);
+                        } else {
+                            console.log(`The doctor chose to save ${input}.`);
+                        }
+
                         playerData[input].state = "living"; // Mark saved victim as living
+
                         // Mark the other victims as dead
                         victims.forEach(victim => {
-                            if (victim !== input) {
+                            if (victim !== input && playerData[victim].state != "dead") {
                                 playerData[victim].state = "dead"; // Mark other victims as dead
                                 console.log(`${victim} has been killed by the mafia.`);
                             }
                         });
+
                         promptForDetective(playerData); // Proceed to detective phase
                     } else {
-                        console.log("Invalid choice. Please select a valid player to save.");
+                        console.log("Invalid choice. Please select a valid living player.");
                         savePrompt(index); // Re-prompt if invalid
                     }
                 });
@@ -189,6 +184,7 @@ function promptForWhoToSave(victims, playerData) {
         savePrompt(0); // Start prompting from the first victim
     }
 }
+
 
 
 // Function for the detective to inquire about a player
