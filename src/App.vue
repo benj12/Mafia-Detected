@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <main>
-      <h2></h2>
+      <h2>How To Play Mafia</h2>
       <!-- Other content goes here -->
     </main>
   </div>
@@ -20,8 +20,25 @@ export default {
 </script>
 
 <style>
-/* Global styles can go here */
+main {
+  padding: 20px;
+  /* Add space inside the main area */
+  text-align: left;
+  /* Left align the text */
+  max-width: 800px;
+  /* Optional: limit the width */
+  margin: 0 auto;
+  /* Center the main area on the page */
+}
+
+h2 {
+  margin-bottom: 20px;
+  /* Add spacing below the heading */
+  font-size: 2em;
+  /* Adjust heading size if needed */
+}
 </style>
+
 
 
 

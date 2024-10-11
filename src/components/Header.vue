@@ -2,6 +2,7 @@
   <header class="header">
     <h1>Welcome to Mafia Detected!</h1>
     <p>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</p>
+    <button @click="handleButtonClick">Sign Up</button>
     <!-- <nav>
       <ul>
         <li><a href="#home">Home</a></li>
