@@ -2,7 +2,8 @@
   <div id="app">
     <Header />
     <main>
-      <h2>How To Play Mafia</h2>
+      <h2>How To Play Mafia Detected</h2>
+      <p>Mafia Detected is a social deduction game where players must uncover the identities of the mafia members before they eliminate the townsmen. The game alternates betwen day and night phases, each with distinct actions.</p>
       <!-- Other content goes here -->
     </main>
   </div>
