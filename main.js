@@ -239,7 +239,7 @@ function dayPhase(playerData) {
         suspicionsPrompt();
     }
 
-    function gatherVotes(playerData, detectiveSuspect) {
+    function gatherVotes(playerData) {
         const livingPeople = Object.keys(playerData).filter(player =>
             (playerData[player].role === "townspeople" ||
                 playerData[player].role === "doctor" ||

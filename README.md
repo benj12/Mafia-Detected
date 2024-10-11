@@ -1,6 +1,24 @@
-# Mafia-Game
+# mafia-game
 
-# Basically finished a command-line version of this game.
-# The way the game works:
+## Project setup
+```
+yarn install
+```
 
-# You need 4-15 players, each player is randomly assigned a role (mafia, doctor, detective)
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
