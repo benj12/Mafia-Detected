@@ -7,7 +7,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
+  name: 'Mafia Detected',
   components: {
     HelloWorld
   }
