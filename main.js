@@ -7,7 +7,6 @@ const rl = readline.createInterface({
 
 let numberOfPlayers; // Declare a variable to store the number of players
 let victims = []; // Variable to store the mafia's victim
-let doctorChoice; // Variable to store the doctor's choice
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
