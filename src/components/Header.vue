@@ -4,22 +4,13 @@
         <p>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</p>
         <button @click="handleButtonClick">Sign Up</button>
         <h2 class="role-header">Obtain Your Role</h2>
-        <v-card class="rounded-card">Mafia</v-card>
         <div class="roles-background">
-            <span class="roles mafia">Mafia</span>
-            <span :class="['highlight', 'rounded']">Highlighted text</span>
-            <span class="roles doctor">Doctor</span>
-            <span class="roles detective">Detective</span>
-            <span class="roles townsman">Townsman</span>
+            <span :class="['highlight', 'rounded']">Mafia</span>
+            <span :class="['highlight', 'rounded']">Doctor</span>
+            <span :class="['highlight', 'rounded']">Detective</span>
+            <span :class="['highlight', 'rounded']">Townsman</span>
         </div>
         <p class="role-text">Use your role wisely to outsmart others in the game</p>
-        <!-- <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav> -->
     </header>
 </template>
 
@@ -36,12 +27,21 @@ export default {
 </script>
 
 <style scoped>
+body {
+    padding-top: 100px;
+    margin: 0;
+}
 .header {
     background-color: #080b66;
     /* Dark blue */
     color: white;
     padding: 15px;
     text-align: center;
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; */
+    /* height: 100px; */
     /* Center align text by default */
 }
 
@@ -67,6 +67,7 @@ h1 {
     display: flex;
     /* Use flexbox for horizontal alignment */
     justify-content: center;
+    /* align-items: center; */
     /* Center align the role text */
     /* background-color: #f0f0f0; */
     /* Background color for the roles */
@@ -81,10 +82,11 @@ h1 {
 .roles-background span {
     margin: 0 15px;
     /* Space between role texts, adjust this to 30px for ~5 spaces */
-    font-size: 20px;
+    font-size: 16px;
     /* Font size for role text */
     color: #333;
     /* Text color */
+
 }
 
 .role {
@@ -123,10 +125,11 @@ h1 {
 }
 
 .highlight {
-    background-color: yellow;
+    background-color: gray;
     /* adjust the color as needed */
     padding: 5px;
     /* adjust the padding as needed */
+    font-size: 16px;
 }
 
 .rounded-card {

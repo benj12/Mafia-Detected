@@ -4,6 +4,12 @@
     <main>
       <h2>How To Play Mafia Detected</h2>
       <p>Mafia Detected is a social deduction game where players must uncover the identities of the mafia members before they eliminate the townsmen. The game alternates betwen day and night phases, each with distinct actions.</p>
+      <h1 class="phases">
+        <span class="day-phase">Day Phase</span>
+        <span class="night-phase">Night Phase</span>
+      </h1>
+
+      <p class="custom-paragraph">During the day phase, all players discuss among themselves who he suspects is the mafia. Then they vote on who to kill.</p>
       <!-- Other content goes here -->
     </main>
   </div>
@@ -37,6 +43,28 @@ h2 {
   /* Add spacing below the heading */
   font-size: 2em;
   /* Adjust heading size if needed */
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.phases {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.night-phase{
+  margin-left: auto;
+}
+.custom-paragraph {
+  width: 50%;
+  margin: 10px auto;
+  line-height: 1.5;
+  text-align: center;
 }
 </style>
 
