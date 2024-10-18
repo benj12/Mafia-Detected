@@ -1,4 +1,5 @@
 <template>
+    <!-- <header class="header" :style="{ backgroundImage: 'url(' + require('@/assets/gameImage.png') + ')'}"> -->
     <header class="header">
         <h1>Welcome to Mafia Detected!</h1>
         <p>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</p>
@@ -22,7 +23,7 @@ export default {
             // Add your button click logic here
             alert("Sign Up clicked!");
         }
-    }
+    },
 };
 </script>
 
@@ -33,6 +34,9 @@ body {
 }
 .header {
     background-color: #080b66;
+    /* background-size: cover;
+    background-position: center; */
+
     /* Dark blue */
     color: white;
     padding: 15px;
@@ -47,6 +51,7 @@ body {
 
 h1 {
     margin-bottom: 10px;
+    font-size: 90px;
     /* Space below the main heading */
 }
 
