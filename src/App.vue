@@ -4,6 +4,7 @@
     <main>
       <div class="header-container">
         <img :src="gameImage" alt="Mafia Detected game overview" class="game-image"/> 
+        
         <div class="text-container">
           <h2>How to Play Mafia Detected</h2>  
           <p>Mafia Detected is a social deduction game where players must uncover the identities of the mafia members before they eliminate the townsmen. The game alternates betwen day and night phases, each with distinct actions.</p>
@@ -17,6 +18,7 @@
           <p>During the night phase, actions are taken by specific roles. The mafia secretly chooses a player(s) to eliminate, the doctor chooses someone to save, and the detective inquires about someone's character.</p>
         </div>
       </div>
+      <h2 class="sign-up-header">Sign Up</h2>
       <div class="input-container">
         <input type="text" v-model="inputEmail" placeholder="Enter your email"/>
         <input type="text" v-model="inputUsername" placeholder="Enter your username" />
@@ -95,6 +97,7 @@ main {
   flex-direction: column;
 }
 
+
 h2 {
   margin:0;
   /* margin-top: 0; */
@@ -118,6 +121,14 @@ h1 {
   margin-bottom: 10px;
   font-size: 1.5em;
 }
+
+.sign-up-header {
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Adds space above the header */
+  font-size: 2em; /* Adjusts the font size */
+  font-weight: bold; /* Makes the header bold */
+}
+
 
 .phases {
   display: flex;
