@@ -8,6 +8,10 @@
 ```
 brew install node
 ```
+- Next, compile and execute the code
+```
+node main.js
+```
 
 
 ## Project setup
