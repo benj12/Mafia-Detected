@@ -27,6 +27,41 @@ export default {
 };
 </script>
 
+
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
+
+/* Your existing styles */
+body {
+    padding-top: 100px;
+    margin: 0;
+}
+.header {
+    background-color: #080b66;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 90px;
+    font-family: 'Rochester', cursive; /* Apply the Rochester font */
+}
+
+/* Other styles remain unchanged */
+.role-header {
+    text-align: center;
+    margin: 20px 0 10px 0;
+    transform: translateX(-10%);
+    font-size: 20px;
+    font-family: 'Rochester', cursive; /* Apply the Rochester font */
+}
+
+/* ... rest of your styles ... */
+</style>
+
 <style scoped>
 body {
     padding-top: 100px;
