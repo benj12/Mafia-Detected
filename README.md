@@ -12,7 +12,7 @@ brew install node
 ```
 node main.js
 ```
-
+- [x] Made CLI version of game
 
 ## Project setup
 ```
