@@ -10,7 +10,7 @@
           <h1 class="day-phase">
             <i class="fas fa-sun" style="color: #F9E076;"></i>Day Phase
           </h1>
-          <p>During the day phase, all players discuss among themselves who he suspects is in the mafia. Then they vote on who to kill.</p>
+          <p>During the day phase, all players discuss among themselves who they suspect are in the mafia. Then they vote on who to kill.</p>
           <h1>
             <i class="fas fa-moon" style="color: #D3D3D3;"></i>Night Phase
           </h1>
