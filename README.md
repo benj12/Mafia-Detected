@@ -2,6 +2,13 @@
 
 ## Command Line Interface (CLI) version of game
 
+- To play the command line version of this game, you need to download the CLI_version folder.
+- Next, to run the CLI version of the game, you will need to install node.js
+- To do that, if using Mac
+```
+brew install node
+```
+
 
 ## Project setup
 ```
