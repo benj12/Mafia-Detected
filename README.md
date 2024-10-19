@@ -1,5 +1,8 @@
 # mafia-game
 
+## Command Line Interface (CLI) version of game
+
+
 ## Project setup
 ```
 yarn install
