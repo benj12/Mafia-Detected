@@ -1,3 +1,7 @@
+
+
+
+
 <template>
   <div id="app">
     <Header />
@@ -20,9 +24,12 @@
       </div>
       <h2 class="sign-up-header">Sign Up</h2>
       <div class="input-container">
+        <p><strong>Email</strong></p>
         <input type="text" v-model="inputEmail" placeholder="Enter your email"/>
-        <input type="text" v-model="inputUsername" placeholder="Enter your username" />
-        <input type="password" v-model="inputPassword" placeholder="Enter your password" />
+        <p><strong>Username</strong></p>
+        <input type="text" v-model="inputUsername" placeholder="Enter your username"/>
+        <p><strong>Password</strong></p>
+        <input type="password" v-model="inputPassword" placeholder="Enter your password"/>
       </div>
       
       <!-- <img :src="gameImage" alt="Mafia Detected game overview" />
@@ -95,6 +102,7 @@ main {
 .text-container {
   display: flex;
   flex-direction: column;
+  font-family: 'Courier New'
 }
 
 
