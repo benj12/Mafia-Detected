@@ -1,4 +1,4 @@
-# mafia-game
+# Mafia Detected
 
 ## Command Line Interface (CLI) version of game
 
