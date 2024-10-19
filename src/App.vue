@@ -18,6 +18,7 @@
         </div>
       </div>
       <div class="input-container">
+        <input type="text" v-model="inputEmail" placeholder="Enter your email"/>
         <input type="text" v-model="inputUsername" placeholder="Enter your username" />
         <input type="password" v-model="inputPassword" placeholder="Enter your password" />
       </div>
