@@ -17,6 +17,10 @@
           <p>During the night phase, actions are taken by specific roles. The mafia secretly chooses a player(s) to eliminate, the doctor chooses someone to save, and the detective inquires about someone's character.</p>
         </div>
       </div>
+      <div class="input-container">
+        <input type="text" v-model="inputUsername" placeholder="Enter your username" />
+        <input type="password" v-model="inputPassword" placeholder="Enter your password" />
+      </div>
       
       <!-- <img :src="gameImage" alt="Mafia Detected game overview" />
       <h2>How To Play Mafia Detected</h2> -->
@@ -53,6 +57,7 @@ export default {
   },
   data() {
     return {
+      inputText: '',
       gameImage // This makes the image available in the template
     };
   }
@@ -128,6 +133,20 @@ h1 {
   margin: 10px auto;
   line-height: 1.5;
   text-align: center;
+}
+
+.input-container {
+  margin-top: 20px; /* Optional top margin for additional spacing from previous content */
+}
+
+.input-container input {
+  display: block; /* Ensures each input takes up a full line */
+  margin-bottom: 20px; /* Adds spacing below each input */
+  width: 100%; /* Optional: makes inputs full width */
+  padding: 10px; /* Optional: adds padding for better appearance */
+  font-size: 1em; /* Adjusts font size */
+  border: 1px solid #ccc; /* Adds a border */
+  border-radius: 4px; /* Rounds the corners */
 }
 </style>
 
