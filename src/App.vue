@@ -31,6 +31,7 @@
         <p><strong>Password</strong></p>
         <input type="password" v-model="inputPassword" placeholder="Enter your password"/>
       </div>
+      <button @click="handleButtonClick">Submit</button>
       
       <!-- <img :src="gameImage" alt="Mafia Detected game overview" />
       <h2>How To Play Mafia Detected</h2> -->
@@ -70,7 +71,13 @@ export default {
       inputText: '',
       gameImage // This makes the image available in the template
     };
-  }
+  },
+  methods: {
+        handleButtonClick() {
+            // Add your button click logic here
+            alert("Submit button clicked!");
+        }
+    },
 };
 </script>
 
