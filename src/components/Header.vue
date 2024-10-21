@@ -3,7 +3,7 @@
     <header class="header">
         <h1>Welcome to Mafia Detected!</h1>
         <p>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</p>
-        <button @click="handleButtonClick">Sign Up</button>
+        <button @click="scrollToSignup">Sign Up</button>
         <h2 class="role-header">Obtain Your Role</h2>
         <div class="roles-background">
             <span :class="['highlight', 'rounded']">Mafia</span>
@@ -19,9 +19,12 @@
 export default {
     name: "HeaderMafia",
     methods: {
-        handleButtonClick() {
+        scrollToSignup() {
             // Add your button click logic here
-            alert("Sign Up clicked!");
+            const element = document.getElementById('signup');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     },
 };

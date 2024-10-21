@@ -1,4 +1,11 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
-createApp(App).mount('#app')
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://zvxquhctcwbdxczczhsl.supabase.co/';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2eHF1aGN0Y3diZHhjemN6aHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk0NTg5NDQsImV4cCI6MjA0NTAzNDk0NH0._uhQugMsDl5royrAqvl6DIow3CW1mn4LHfOx-qsIklc';
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+createApp(App).mount('#app');

@@ -1,7 +1,3 @@
-
-
-
-
 <template>
   <div id="app">
     <Header />
@@ -23,7 +19,7 @@
         </div>
       </div>
       <h2 class="sign-up-header">Sign Up</h2>
-      <div class="input-container">
+      <div id = "signup" class="input-container">
         <p><strong>Email</strong></p>
         <input type="text" v-model="inputEmail" placeholder="Enter your email"/>
         <p><strong>Username</strong></p>
@@ -60,6 +56,7 @@
 <script>
 import Header from './components/Header.vue';
 import gameImage from './assets/gameImage.png';
+import { supabase } from './main';
 
 export default {
   name: 'App',
@@ -68,16 +65,35 @@ export default {
   },
   data() {
     return {
-      inputText: '',
+      inputEmail: '',
+      inputUsername: '',
+      inputPassword: '',
       gameImage // This makes the image available in the template
     };
   },
-  methods: {
-        handleButtonClick() {
-            // Add your button click logic here
-            alert("Submit button clicked!");
-        }
-    },
+ methods: {
+    async handleButtonClick() {
+  const { user, error } = await supabase.auth.signUp({
+    email: this.inputEmail,
+    password: this.inputPassword,
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    // Create a profile entry in the profiles table
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .insert([{ user_id: user.id, username: this.inputUsername }]);
+
+    if (profileError) {
+      alert(profileError.message);
+    } else {
+      alert('Sign up successful and profile created!');
+    }
+  }
+}
+  }
 };
 </script>
 
