@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import SignUp from '../components/SignUp.vue'; // Adjust the path as needed
+import SignUp from '../components/SignUp.vue'; 
 import Home from '../components/HomePage.vue';
 import Login from '../components/LoginPage.vue';
 const routes = [
     {
         path: '/',
-        name: 'Home', // You can name this whatever you like
-        component: Home,// This will display App.vue at the root
+        name: 'Home', 
+        component: Home,
     },
     {
         path: '/signup',
@@ -18,12 +18,12 @@ const routes = [
         name: 'Login',
         component: Login
     }
-    // Add more routes as needed
+    
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;
