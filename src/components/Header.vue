@@ -1,9 +1,14 @@
 <template>
-    <!-- <header class="header" :style="{ backgroundImage: 'url(' + require('@/assets/gameImage.png') + ')'}"> -->
     <header class="header">
         <h1>Welcome to Mafia Detected!</h1>
         <p>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</p>
-        <button @click="scrollToSignup">Sign Up</button>
+        <router-link to="/signup">
+            <button>Sign Up</button>
+        </router-link>
+        <router-link to="/login">
+            <button>Login</button>
+        </router-link>
+
         <h2 class="role-header">Obtain Your Role</h2>
         <div class="roles-background">
             <span :class="['highlight', 'rounded']">Mafia</span>
@@ -18,15 +23,6 @@
 <script>
 export default {
     name: "HeaderMafia",
-    methods: {
-        scrollToSignup() {
-            // Add your button click logic here
-            const element = document.getElementById('signup');
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    },
 };
 </script>
 
