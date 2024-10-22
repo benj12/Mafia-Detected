@@ -1,5 +1,4 @@
 <template>
-    <!-- <Header /> -->
     <main>
         <div class="header-container">
             <img :src="gameImage" alt="Mafia Detected game overview" class="game-image"/> 
