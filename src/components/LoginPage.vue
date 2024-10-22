@@ -8,6 +8,9 @@
             <input type="password" v-model="passwordLogin" placeholder="Enter your password"/>
         </div>
         <button @click="login">Login</button>
+        <router-link to="/forgotpass">
+            <button>Forgot password?</button>
+        </router-link>
     </div>
 </template>
 

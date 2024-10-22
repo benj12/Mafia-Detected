@@ -11,6 +11,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Create and mount the Vue app
 const app = createApp(App);
+app.config.globalProperties.$supabase = supabase;
 app.use(router); // Use the router instance
 app.mount('#app');
 
