@@ -1,5 +1,13 @@
 # Mafia Detected
 
+--------------------------------
+# Stack
+- Supabase
+- SQLite
+- Node.js
+- Vue.js
+- PHP
+--------------------------------
 ## Command Line Interface (CLI) version of game
 
 - To play the command line version of this game, you need to download the CLI_version folder.
