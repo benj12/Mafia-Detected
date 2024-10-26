@@ -13,11 +13,21 @@ brew install node
 node main.js
 ```
 
-## Project setup
+## Website version of game
+
+- To run the website version of the game, you need to first install yarn.
+- To do that, if using Mac:
+```
+brew install yarn
+```
+- Next, install the dependencies:
 ```
 yarn install
 ```
-
+- Next, to run the website version of the game, run the following command:
+```
+yarn run serve
+```
 ### Compiles and hot-reloads for development
 ```
 yarn serve
