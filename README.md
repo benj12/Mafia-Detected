@@ -24,7 +24,6 @@ brew install yarn
 ```
 yarn install
 ```
-- Then, download the website_version folder.
 - Next, to run the website version of the game, run the following command:
 ```
 yarn run serve
