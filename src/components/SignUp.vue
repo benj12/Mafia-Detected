@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { supabase } from '../main';
+import { supabase } from '../main';  // Adjust this import based on your Supabase client setup
 
 export default {
     data() {
@@ -28,28 +28,37 @@ export default {
     },
     methods: {
         async handleButtonClick() {
-            const { user, error } = await supabase.auth.signUp({
-                email: this.inputEmail,
-                password: this.inputPassword,
-            });
+            try {
+                // Existing signup logic
+                const { data, error } = await supabase.auth.signUp({
+                    email: this.inputEmail,
+                    password: this.inputPassword,
+                });
 
-            if (error) {
-            alert(error.message); // Display the error message
-            } else {
-                if (user) {
-                    // Create a profile entry in the profiles table
-                    const { error: profileError } = await supabase
-                        .from('profiles')
-                        .insert([{ user_id: user.id, username: this.inputUsername }]);
+                if (error) alert(error.message);
+                // If signup is successful, update the profiles table
+                else {
+                    if (data.user) {
+                        const { error: profileError } = await supabase
+                            .from('profiles')
+                            .insert({
+                                id: data.user.id,
+                                display_name: this.inputUsername,
+                                email: this.inputEmail,
+                                password: this.inputPassword,
+                                updated_at: new Date(),
+                            });
 
-                    if (profileError) {
-                        alert(profileError.message);
-                    } else {
-                        alert('Sign up successful and profile created!');
+                        if (profileError) throw profileError;
+
+                        console.log('Profile updated successfully');
+                        alert('Signup successful!');
+                        // Handle successful signup and profile update (e.g., redirect to dashboard)
                     }
-                } else {
-                    alert('User information not available. Please try again.'); // Fallback error handling
                 }
+            } catch (error) {
+                console.error('Error:', error.message);
+                // Handle error (e.g., show error message to user)
             }
         },
 
