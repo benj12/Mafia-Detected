@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <h1>Welcome to Mafia Detected!</h1>
-        <p>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</p>
+        <p><em>Become a mafia member, doctor, detective, or townsman and play the thrilling game now!</em></p>
         <router-link to="/signup">
             <button class="spacing-between-buttons">Sign Up</button>
         </router-link>
