@@ -3,9 +3,10 @@
 --------------------------------
 # Stack
 - Supabase
-- SQLite
 - Node.js
+- JavaScript
 - Vue.js
+- PostgreSQL
 - PHP
 --------------------------------
 ## Command Line Interface (CLI) version of game
