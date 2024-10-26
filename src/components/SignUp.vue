@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { supabase } from '../main';  // Adjust this import based on your Supabase client setup
 
 export default {
@@ -29,36 +30,20 @@ export default {
     methods: {
         async handleButtonClick() {
             try {
-                // Existing signup logic
-                const { data, error } = await supabase.auth.signUp({
+                const response = await axios.post('/database/signup.php', {
                     email: this.inputEmail,
+                    username: this.inputUsername,
                     password: this.inputPassword,
                 });
-
-                if (error) alert(error.message);
-                // If signup is successful, update the profiles table
-                else {
-                    if (data.user) {
-                        const { error: profileError } = await supabase
-                            .from('profiles')
-                            .insert({
-                                id: data.user.id,
-                                display_name: this.inputUsername,
-                                email: this.inputEmail,
-                                password: this.inputPassword,
-                                updated_at: new Date(),
-                            });
-
-                        if (profileError) throw profileError;
-
-                        console.log('Profile updated successfully');
-                        alert('Signup successful!');
-                        // Handle successful signup and profile update (e.g., redirect to dashboard)
-                    }
+                if(response.data.success){
+                    alert("Signup successful!");
                 }
-            } catch (error) {
+                else{
+                    alert(response.data.message);
+                }
+                console.log(response.data);
+            } catch(error){
                 console.error('Error:', error.message);
-                // Handle error (e.g., show error message to user)
             }
         },
 

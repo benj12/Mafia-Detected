@@ -1,6 +1,6 @@
 <?php
-$host = "localhost";
-$password = "superUser1!";
+$host = "670a3bb7cf43";
+$password = "test";
 $database = "postgres";
 $user = "super_user";
 $port = 5432;
