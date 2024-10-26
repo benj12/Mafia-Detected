@@ -8,6 +8,7 @@
         <router-link to="/login">
             <button class="spacing-between-buttons">Login</button>
         </router-link>
+        
 
         <h2 class="role-header">Obtain Your Role</h2>
         <div class="roles-background">

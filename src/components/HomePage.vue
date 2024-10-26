@@ -75,8 +75,10 @@ main {
 
 h2 {
   margin:0;
-  /* margin-top: 0; */
-  /* margin-bottom: 20px; */
+  /* margin-top: 0; 
+  margin-bottom: 20px;
+  margin-left: -200px;
+  margin-right: 20px; */
   /* Add spacing below the heading */
   font-size: 2em;
   font: Avenir;

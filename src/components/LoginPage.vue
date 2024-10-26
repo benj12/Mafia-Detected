@@ -7,9 +7,9 @@
             <p><strong>Password</strong></p>
             <input type="password" v-model="passwordLogin" placeholder="Enter your password"/>
         </div>
-        <button @click="login">Login</button>
+        <button @click="login" class="login-button">Login</button>
         <router-link to="/forgotpass">
-            <button>Forgot password?</button>
+            <button class="forgot-password-button">Forgot password?</button>
         </router-link>
     </div>
 </template>
@@ -68,6 +68,10 @@ h2 {
   /* Adjust heading size if needed */
 }
 
+
+.login-button, .forgot-password-button {
+  margin: 10px;
+}
 
 .login-header {
   text-align: center; /* Center align the text */
