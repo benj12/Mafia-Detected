@@ -79,6 +79,7 @@ h1 {
     text-align: center;
     margin: 20px 0 10px 0;
     transform: translateX(-4.75%);
+    font-family: 'Papyrus', cursive;
 }
 
 
