@@ -17,7 +17,7 @@
             <span :class="['highlight', 'rounded']">Detective</span>
             <span :class="['highlight', 'rounded']">Townsman</span>
         </div>
-        <p class="role-text"><strong>Use your role wisely to outsmart others in the game.</strong></p> 
+        <p class="role-text"><em>Use your role wisely to outsmart others in the game.</em></p> 
     </header>
 </template>
 
@@ -79,7 +79,6 @@ h1 {
     text-align: center;
     margin: 20px 0 10px 0;
     transform: translateX(-4.75%);
-    font-family: 'Rochester', cursive; /* Apply the Rochester font */
 }
 
 
