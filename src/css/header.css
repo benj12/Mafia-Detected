@@ -30,13 +30,13 @@ body {
 
 }
 
-
-h1 {
+#header-title {
     margin-bottom: 10px;
-    font-size: 90px;
+    font-size: 90px !important;
     font-family: 'Rochester', cursive;
     /* Apply the Rochester font */
 }
+
 
 /* Other styles remain unchanged */
 .role-header {
