@@ -10,14 +10,14 @@
         </router-link>
         
 
-        <h2 class="role-header">Obtain Your Role</h2>
+        <h2 class="role-header"><strong>Obtain Your Role</strong></h2>
         <div class="roles-background">
             <span :class="['highlight', 'rounded']">Mafia</span>
             <span :class="['highlight', 'rounded']">Doctor</span>
             <span :class="['highlight', 'rounded']">Detective</span>
             <span :class="['highlight', 'rounded']">Townsman</span>
         </div>
-        <p class="role-text">Use your role wisely to outsmart others in the game</p>
+        <p class="role-text"><strong>Use your role wisely to outsmart others in the game.</strong></p> 
     </header>
 </template>
 
@@ -52,8 +52,13 @@ body {
     padding: 15px;
     text-align: center;
     box-sizing: border-box;
-    margin: 0;
+    width: 100vw;
+    margin: 0 calc(-50vw + 50%);
+    padding: 15 px calc(-50vw + 50%);
+
+
 }
+
 
 h1 {
     margin-bottom: 10px;
@@ -70,49 +75,13 @@ h1 {
     font-family: 'Rochester', cursive; /* Apply the Rochester font */
 }
 
-/* ... rest of your styles ... */
-</style>
-
-<style scoped>
-body {
-    padding-top: 100px;
-    margin: 0;
-}
-.header {
-    background-color: #080b66;
-    /* background-size: cover;
-    background-position: center; */
-
-    /* Dark blue */
-    color: white;
-    padding: 15px;
-    text-align: center;
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    right: 0; */
-    /* height: 100px; */
-    /* Center align text by default */
-}
-
-h1 {
-    margin-bottom: 10px;
-    font-size: 90px;
-    /* Space below the main heading */
-}
-
-.role-header {
-    text-align: center; /* Center align this specific heading */
-    margin: 20px 0 10px 0; /* Adjust spacing: top, bottom */
-    transform: translateX(-10%); /* Shift it slightly leftward */
-    font-size: 20px;
-}
-
 .role-text {
     text-align: center;
     margin: 20px 0 10px 0;
     transform: translateX(-4.75%);
+    font-family: 'Rochester', cursive; /* Apply the Rochester font */
 }
+
 
 .roles-background {
     display: flex;
@@ -129,6 +98,7 @@ h1 {
     margin: 10px 0;
     /* Space above and below */
 }
+
 
 .roles-background span {
     margin: 0 15px;
@@ -154,6 +124,7 @@ h1 {
     display: inline-block,
     /* Font size for role text */
 }
+/* ... rest of your styles ... */
 
 .mafia {
     background-color: #686868;
@@ -188,24 +159,3 @@ h1 {
 }
 
 </style>
-
-<!-- <style scoped>
-.header {
-  background-color: #080b66; /* Dark blue */
-  color: white;
-  padding: 15px;
-  text-align: center;
-}
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-nav ul li {
-  display: inline;
-  margin: 0 15px;
-}
-nav ul li a {
-  color: white;
-  text-decoration: none;
-}
-</style> -->
