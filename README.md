@@ -7,7 +7,10 @@
 - JavaScript
 - Vue.js
 - PostgreSQL
+- Docker
+- HTML
 - PHP
+- CSS
 --------------------------------
 ## Command Line Interface (CLI) version of game
 
