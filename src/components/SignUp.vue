@@ -9,7 +9,7 @@
             <p><strong>Password</strong></p>
             <input type="password" v-model="inputPassword" placeholder="Enter your password"/>
         </div>
-        <button @click="handleButtonClick">Submit</button>
+        <button @click="handleButtonClick" class="submit-button">Submit</button>
     </div>
 </template>
 
@@ -130,6 +130,14 @@ h1 {
   border-radius: 4px; /* Rounds the corners */
 }
 
+.submit-button {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.submit-button:hover {
+    background-color: #b3b4b7;
+    color: rgb(1, 0, 0);
+}
 </style>
 
 

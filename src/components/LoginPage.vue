@@ -72,6 +72,10 @@ h2 {
 .login-button, .forgot-password-button {
   margin: 10px;
 }
+.login-button:hover, .forgot-password-button:hover {
+    background-color: #b3b4b7;
+    color: rgb(1, 0, 0);
+}
 
 .login-header {
   text-align: center; /* Center align the text */
