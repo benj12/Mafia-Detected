@@ -47,13 +47,10 @@ body {
     margin: 0;
 }
 .header {
-    top: 0;
-    z-index: 1000;
     background-color: #080b66;
     color: white;
     padding: 15px;
     text-align: center;
-    width: 100%;
     box-sizing: border-box;
     margin: 0;
 }
