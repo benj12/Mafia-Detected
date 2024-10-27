@@ -36,16 +36,26 @@ export default {
 .spacing-between-buttons{
     margin: 10px;
 }
+.spacing-between-buttons:hover{
+    background-color: #abadad;
+    color: rgb(19, 1, 1);
+}
 /* Your existing styles */
 body {
-    padding-top: 100px;
+    /* padding-top: 100px; */
+    padding: 0;
     margin: 0;
 }
 .header {
+    top: 0;
+    z-index: 1000;
     background-color: #080b66;
     color: white;
     padding: 15px;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 h1 {
