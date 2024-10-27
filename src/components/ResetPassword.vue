@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Change your password</h2>
+    <h2 id = "reset-password-header">Change your password</h2>
     <input type="password" v-model="password" placeholder="Enter your new password" />
     <button @click="changePassword">Change Password</button>
     <p v-if="message">{{ message }}</p>
@@ -50,9 +50,5 @@ export default {
 </script>
 
 <style>
-h2 {
-  margin: 0;
-  font-size: 2em;
-  font: Avenir;
-}
+@import "../css/resetPassword.css";
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Forgot Password</h2>
+        <h2 id = "forgot-password-header">Forgot Password</h2>
         <input type="text" v-model="email" placeholder="Enter your email" />
         <button @click="sendResetLink">Send Reset Link</button>
         <p v-if="message">{{ message }}</p>
@@ -35,13 +35,5 @@ export default {
 </script>
 
 <style>
-h2 {
-  margin:0;
-  /* margin-top: 0; */
-  /* margin-bottom: 20px; */
-  /* Add spacing below the heading */
-  font-size: 2em;
-  font: Avenir;
-  /* Adjust heading size if needed */
-}
+@import "../css/forgotPassword.css";
 </style>
