@@ -24,7 +24,7 @@ brew install node
 ```
 node main.js
 ```
-
+------------------------------
 ## Website version of game
 
 - To run the website version of the game, you need to first install yarn.
