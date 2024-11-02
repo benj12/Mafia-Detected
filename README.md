@@ -1,6 +1,5 @@
 # Mafia Detected
 ## Stack
-- Supabase
 - Django
 - JavaScript
 - Vue.js
