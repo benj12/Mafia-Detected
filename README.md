@@ -1,5 +1,5 @@
 # Mafia Detected
-# Stack
+## Stack
 - Supabase
 - Node.js
 - Django
