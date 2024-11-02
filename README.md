@@ -1,6 +1,4 @@
 # Mafia Detected
-
---------------------------------
 # Stack
 - Supabase
 - Node.js
