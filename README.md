@@ -6,7 +6,6 @@
 - JavaScript
 - Vue.js
 - PostgreSQL
-- Docker
 - HTML
 - CSS
 --------------------------------
