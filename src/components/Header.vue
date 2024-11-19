@@ -29,4 +29,5 @@ export default {
 
 <style scoped>
 @import '../css/header.css';
+
 </style>

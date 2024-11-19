@@ -40,5 +40,4 @@ export default {
 
 <style scoped>
 @import "../css/home.css";
-
 </style>

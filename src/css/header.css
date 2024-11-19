@@ -41,7 +41,7 @@ body {
 /* Other styles remain unchanged */
 .role-header {
     text-align: center;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 10px 150px;
     transform: translateX(-10%);
     font-size: 20px;
     font-family: 'Rochester', cursive;
@@ -50,7 +50,7 @@ body {
 
 .role-text {
     text-align: center;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 10px 100px;
     transform: translateX(-4.75%);
     font-family: 'Papyrus', cursive;
 }

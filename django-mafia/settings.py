@@ -78,11 +78,6 @@ WSGI_APPLICATION = "djangovue.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "mafia-database",
-        "USER": "mafia",
-        "PASSWORD": "detectedMafia142!",
-        "HOST": '127.0.0.1'
-        "PORT": "5432"
     }
 }
 
