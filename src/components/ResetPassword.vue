@@ -8,42 +8,41 @@
 </template>
 
 <script>
-import { ref, onBeforeMount } from 'vue';
-import { supabase } from '../main';
+import { onBeforeMount } from 'vue';
 
 export default {
   setup() {
-    const password = ref('');
-    const message = ref('');
+    // const password = ref('');
+    // const message = ref('');
 
     onBeforeMount(() => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const accessToken = urlParams.get('access_token'); // Get the access token from URL
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   const accessToken = urlParams.get('access_token'); // Get the access token from URL
 
-      if (accessToken) {
-        // Set the session in Supabase
-        supabase.auth.setAuth(accessToken);
-      } else {
-        message.value = 'No access token found!';
-      }
+    //   if (accessToken) {
+    //     // Set the session in Supabase
+    //     supabase.auth.setAuth(accessToken);
+    //   } else {
+    //     message.value = 'No access token found!';
+    //   }
     });
 
-    const changePassword = async () => {
-      const { error } = await supabase.auth.updateUser({
-        password: password.value,
-      });
+    // const changePassword = async () => {
+    //   const { error } = await supabase.auth.updateUser({
+    //     password: password.value,
+    //   });
 
-      if (error) {
-        message.value = error.message;
-      } else {
-        message.value = 'Password changed successfully!';
-      }
-    };
+    //   if (error) {
+    //     message.value = error.message;
+    //   } else {
+    //     message.value = 'Password changed successfully!';
+    //   }
+    // };
 
     return {
-      password,
-      message,
-      changePassword,
+      password: [],
+      message: [],
+      changePassword: [],
     };
   },
 };

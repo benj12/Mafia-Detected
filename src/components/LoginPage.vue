@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { supabase } from '../main';
 
 export default {
   data() {
@@ -27,17 +26,17 @@ export default {
   methods: {
 
     async login() {
-      const { user, error } = await supabase.auth.signInWithPassword({
-        email: this.emailLogin,   // Use emailLogin for the login email
-        password: this.passwordLogin, // Use passwordLogin for the login password
-      });
+      // const { user, error } = await supabase.auth.signInWithPassword({
+      //   email: this.emailLogin,   // Use emailLogin for the login email
+      //   password: this.passwordLogin, // Use passwordLogin for the login password
+      // });
 
-      if (error) {
-        alert(error.message); // Handle error (e.g., show a message)
-      } else {
-        alert('Login successful!');
-        console.log(user); // User information can be used here
-      }
+      // if (error) {
+      //   alert(error.message); // Handle error (e.g., show a message)
+      // } else {
+      //   alert('Login successful!');
+      //   console.log(user); // User information can be used here
+      // }
     },
   },
 };

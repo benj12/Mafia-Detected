@@ -14,7 +14,6 @@
 <script>
 import Header from './components/Header.vue';
 import gameImage from './assets/gameImage.png';
-import { supabase } from './main';
 
 export default {
   name: 'App',
@@ -32,48 +31,48 @@ export default {
     };
   },
   methods: {
-  async handleButtonClick() {
-    const { user, error } = await supabase.auth.signUp({
-      email: this.inputEmail,
-      password: this.inputPassword,
-    });
+  // async handleButtonClick() {
+  //   const { user, error } = await supabase.auth.signUp({
+  //     email: this.inputEmail,
+  //     password: this.inputPassword,
+  //   });
 
-    if (error) {
-      alert(error.message); // Display the error message
-    } else {
-      if (user) {
-        // Create a profile entry in the profiles table
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert([{ user_id: user.id, username: this.inputUsername }]);
+  //   if (error) {
+  //     alert(error.message); // Display the error message
+  //   } else {
+  //     if (user) {
+  //       // Create a profile entry in the profiles table
+  //       const { error: profileError } = await supabase
+  //         .from('profiles')
+  //         .insert([{ user_id: user.id, username: this.inputUsername }]);
 
-        if (profileError) {
-          alert(profileError.message);
-        } else {
-          alert('Sign up successful and profile created!');
-        }
-      } else {
-        alert('User information not available. Please try again.'); // Fallback error handling
-      }
-    }
-  },
-  // ... rest of your methods
-  async login() {
-      const { user, error } = await supabase.auth.signInWithPassword({
-        email: this.emailLogin,   // Use emailLogin for the login email
-        password: this.passwordLogin, // Use passwordLogin for the login password
-      });
+  //       if (profileError) {
+  //         alert(profileError.message);
+  //       } else {
+  //         alert('Sign up successful and profile created!');
+  //       }
+  //     } else {
+  //       alert('User information not available. Please try again.'); // Fallback error handling
+  //     }
+  //   }
+  // },
+  // // ... rest of your methods
+  // async login() {
+  //     const { user, error } = await supabase.auth.signInWithPassword({
+  //       email: this.emailLogin,   // Use emailLogin for the login email
+  //       password: this.passwordLogin, // Use passwordLogin for the login password
+  //     });
 
-      if (error) {
-        alert(error.message); // Handle error (e.g., show a message)
-      } else {
-        alert('Login successful!');
-        console.log(user); // User information can be used here
-      }
-    },
-  async forgotPassword(){
+  //     if (error) {
+  //       alert(error.message); // Handle error (e.g., show a message)
+  //     } else {
+  //       alert('Login successful!');
+  //       console.log(user); // User information can be used here
+  //     }
+  //   },
+  // async forgotPassword(){
 
-  }
+  // }
 }
 
 };

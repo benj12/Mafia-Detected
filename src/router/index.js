@@ -4,6 +4,7 @@ import Home from '../components/HomePage.vue';
 import Login from '../components/LoginPage.vue';
 import ForgotPassword from '../components/ForgotPassword.vue';
 import ResetPassword from '../components/ResetPassword.vue';
+import GamePage from '../components/GamePage.vue';
 const routes = [
     {
         path: '/',
@@ -29,6 +30,11 @@ const routes = [
         path: '/reset-password',
         name: 'ResetPass',
         component: ResetPassword
+    },
+    {
+        path: '/game',
+        name: 'Game',
+        component: GamePage
     }
     
 ];

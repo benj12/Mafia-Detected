@@ -3,66 +3,80 @@
         <h2 class="sign-up-header">Sign Up</h2>
         <div id="signup" class="signup-container">
             <p><strong>Email</strong></p>
-            <input type="text" v-model="inputEmail" placeholder="Enter your email"/>
+            <input type="text" v-model="email" placeholder="Enter your email"/>
             <p><strong>Username</strong></p>
-            <input type="text" v-model="inputUsername" placeholder="Enter your username"/>
+            <input type="text" v-model="username" placeholder="Enter your username"/>
             <p><strong>Password</strong></p>
-            <input type="password" v-model="inputPassword" placeholder="Enter your password"/>
+            <input type="password" v-model="password" placeholder="Enter your password"/>
         </div>
-        <button @click="handleButtonClick" class="submit-button">Submit</button>
+        <p><button @click="register" class="submit-button">Submit</button></p>
+        <p><button @click="signInWithGoogle" class="submit-button">Sign In With Google</button></p>
     </div>
 </template>
 
-<script>
-import axios from 'axios';
-import { supabase } from '../main';  // Adjust this import based on your Supabase client setup
+<script setup>
+import { ref } from "vue";
+// import { useRouter } from 'vue-router';
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// Adjust this import based on your Supabase client setup
 
-export default {
-    data() {
-        return {
-            inputEmail: '',
-            inputUsername: '',
-            inputPassword: '',
-            emailLogin: '',
-            passwordLogin: '',
-        };
-    },
-    methods: {
-        async handleButtonClick() {
-            try {
-                const response = await axios.post('/database/signup.php', {
-                    email: this.inputEmail,
-                    username: this.inputUsername,
-                    password: this.inputPassword,
-                });
-                if(response.data.success){
-                    alert("Signup successful!");
-                }
-                else{
-                    alert(response.data.message);
-                }
-                console.log(response.data);
-            } catch(error){
-                console.error('Error:', error.message);
-            }
-        },
+const email = ref("");
+const password = ref("");
+const username = ref("");
+// const router = useRouter();
+// const register = () => {
+//     // createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+//     //     .then((data) => {
+//     //         console.log("Successfully registered!");
+//     //         router.push('/game');
+//     //     })
+//     //     .catch((error) => {
+//     //         console.log(error.code);
+//     //         alert(error.message);
+//     //     });
 
-        async login() {
-            const { user, error } = await supabase.auth.signInWithPassword({
-                email: this.emailLogin,   // Use emailLogin for the login email
-                password: this.passwordLogin, // Use passwordLogin for the login password
-            });
+// };
 
-            if (error) {
-                alert(error.message); // Handle error (e.g., show a message)
-            } else {
-                alert('Login successful!');
-                console.log(user); // User information can be used here
-            }
-        },
-    },
-};
-</script>
+// const signInWithGoogle = () => {
+
+// };
+
+// export default {
+//     data() {
+//         return {
+//             inputEmail: '',
+//             inputUsername: '',
+//             inputPassword: '',
+//             emailLogin: '',
+//             passwordLogin: '',
+//         };
+//     },
+//     methods: {
+//         async handleButtonClick() {
+//             try {
+//                 const response = await axios.post('/database/signup.php', {
+//                     email: this.inputEmail,
+//                     username: this.inputUsername,
+//                     password: this.inputPassword,
+//                 });
+//                 if(response.data.success){
+//                     alert("Signup successful!");
+//                 }
+//                 else{
+//                     alert(response.data.message);
+//                 }
+//                 console.log(response.data);
+//             } catch(error){
+//                 console.error('Error:', error.message);
+//             }
+//         },
+
+//         async login() {
+            
+//         },
+//     },
+// };
+// </script>
 
 <style>
 @import "../css/signup.css";

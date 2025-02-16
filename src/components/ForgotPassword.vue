@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { supabase } from '../main'; // Adjust the path as necessary
+// import { supabase } from '../main'; // Adjust the path as necessary
 
 export default {
     data() {
@@ -18,17 +18,17 @@ export default {
         };
     },
   methods: {
-    async sendResetLink() {
-        const { error } = await supabase.auth.resetPasswordForEmail(this.email, {
-            redirectTo: 'http://localhost:8080/reset-password', // Change to your actual URL
-        });
+    // async sendResetLink() {
+    //     const { error } = await supabase.auth.resetPasswordForEmail(this.email, {
+    //         redirectTo: 'http://localhost:8080/reset-password', // Change to your actual URL
+    //     });
 
-        if (error) {
-            this.message = error.message; // Show error message
-        } else {
-            this.message = 'Password reset link sent! Check your email.';
-        }
-    },
+    //     if (error) {
+    //         this.message = error.message; // Show error message
+    //     } else {
+    //         this.message = 'Password reset link sent! Check your email.';
+    //     }
+    // },
 
   },
 };
